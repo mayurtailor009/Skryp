@@ -1,0 +1,139 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/header" />
+
+    <WebView
+        android:id="@+id/wb_coupon"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></WebView>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/et_bg"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                style="@style/tv_normal"
+                android:text="Skin Retreat"
+                android:textColor="@color/red" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/productimg" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:text="Expires On:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:layout_marginTop="3dp"
+                        android:text="12-12-12 12:00"
+                        android:textColor="@color/black"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:layout_marginTop="20dp"
+                        android:text="Disc. Price:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:layout_marginTop="3dp"
+                        android:text="$12.80"
+                        android:textColor="@color/black"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:text="Download On:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:layout_marginTop="3dp"
+                        android:text="12-12-12 12:00"
+                        android:textColor="@color/black"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:layout_marginTop="20dp"
+                        android:text="Amount Saved:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/tv_medium"
+                        android:layout_marginTop="3dp"
+                        android:text="$12.80"
+                        android:textColor="@color/black"
+                        android:textStyle="normal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/tv_medium"
+                    android:text="Coupon Code:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/tv_medium"
+                    android:layout_marginLeft="5dp"
+                    android:text="GHG2-H42K-43KK-63LK"
+                    android:textColor="@color/black"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

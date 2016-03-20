@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_drawer"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="start"
+
+    android:orientation="horizontal"
+    android:weightSum="8">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="7"
+        android:background="@drawable/blurbg"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/filter_box"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/tv_medium"
+                    android:padding="10dp"
+                    android:text="Filter By:"
+                    android:textColor="@color/gray_dark" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray_light" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/tv_small"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Price Min($)"
+                            android:textColor="@color/gray_dark" />
+
+                        <EditText
+                            android:gravity="center_horizontal"
+                            android:id="@+id/et_min_price"
+                            style="@style/et_style"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/et_bg"
+                            android:drawableRight="@drawable/down_arrow"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/tv_small"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Price Max($)"
+                            android:textColor="@color/gray_dark" />
+
+                        <EditText
+                            android:gravity="center_horizontal"
+                            android:id="@+id/et_max_price"
+                            style="@style/et_style"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/et_bg"
+                            android:drawableRight="@drawable/down_arrow"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/gray_light" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/tv_small"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Discount Min(%)"
+                            android:textColor="@color/gray_dark" />
+
+                        <EditText
+                            android:gravity="center_horizontal"
+                            android:id="@+id/et_min_discount"
+                            style="@style/et_style"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/et_bg"
+                            android:drawableRight="@drawable/down_arrow"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/tv_small"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Discount Max(%)"
+                            android:textColor="@color/gray_dark" />
+
+                        <EditText
+                            android:gravity="center_horizontal"
+                            android:id="@+id/et_max_discount"
+                            style="@style/et_style"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/et_bg"
+                            android:drawableRight="@drawable/down_arrow"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:padding="5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/gray_light" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/tv_small"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Proximity(Km)"
+                        android:textColor="@color/gray_dark" />
+
+                    <EditText
+                        android:gravity="center_horizontal"
+                        android:id="@+id/et_proximity"
+                        style="@style/et_style"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/et_bg"
+                        android:drawableRight="@drawable/down_arrow"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray_light" />
+
+                <TextView
+                    style="@style/tv_medium"
+                    android:padding="10dp"
+                    android:text="Sort By:"
+                    android:textColor="@color/gray_dark" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray_light" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cb_latest"
+                        style="@style/cb_style"
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:checked="false"
+                        android:text="Latest" />
+
+                    <TextView
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:id="@+id/cb_popularity"
+                        style="@style/cb_style"
+                        android:layout_marginLeft="5dp"
+                        android:checked="false"
+                        android:text="Popularity" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:id="@+id/cb_price"
+                        style="@style/cb_style"
+                        android:checked="false"
+                        android:text="Price" />
+
+                    <TextView
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:id="@+id/cb_discount"
+                        style="@style/cb_style"
+                        android:layout_marginLeft="5dp"
+                        android:checked="false"
+                        android:text="Discount" />
+
+                    <TextView
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:id="@+id/cb_proximity"
+                        style="@style/cb_style"
+                        android:layout_marginLeft="5dp"
+                        android:checked="false"
+                        android:text="Proximity" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray_light" />
+
+                <TextView
+                    style="@style/tv_medium"
+                    android:padding="10dp"
+                    android:text="Sort Order:"
+                    android:textColor="@color/gray_dark" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray_light" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:id="@+id/cb_asc"
+                        style="@style/cb_style"
+                        android:checked="false"
+                        android:text="Ascending" />
+
+                    <TextView
+                        android:drawableLeft="@drawable/checkbox_selector"
+                        android:id="@+id/cb_desc"
+                        style="@style/cb_style"
+                        android:layout_marginLeft="5dp"
+                        android:checked="false"
+                        android:text="Descending" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/gray_light" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_cancel"
+                        style="@style/btn_style"
+                        android:background="@drawable/btngray"
+                        android:text="CANCEL" />
+
+                    <Button
+                        android:id="@+id/btn_search"
+                        style="@style/btn_style"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/btnred"
+                        android:text="SEARCH" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>

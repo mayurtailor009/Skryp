@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/theme_color"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:weightSum="13">
+
+    <ImageView
+        android:id="@+id/iv_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:src="@drawable/back"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="9"
+        android:src="@drawable/logotext"
+        android:visibility="visible" />
+
+    <EditText
+        android:textSize="16sp"
+        android:id="@+id/et_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        android:visibility="gone"
+        android:background="@drawable/et_bg"
+        android:hint="Search Coupon"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/tv_header"
+        style="@style/tv_heading"
+        android:layout_width="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="9"
+        android:gravity="center_horizontal"
+        android:text="Header"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:src="@drawable/btnsearch"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:src="@drawable/btnclose"
+        android:visibility="invisible" />
+</LinearLayout>
