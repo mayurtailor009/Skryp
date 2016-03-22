@@ -3,7 +3,12 @@ package com.scryp.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,13 +38,17 @@ import com.scryp.utility.WebServiceListener;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class CouponDetailActivity extends BaseActivity implements WebServiceListener{
 
     private CouponDTO couponDTO;
     private CouponDTO couponDetail;
     private DisplayImageOptions options;
     private String latitude, longitude;
-
+    ImageView ivThumb;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +88,8 @@ public class CouponDetailActivity extends BaseActivity implements WebServiceList
                 btnDownload.setOnClickListener(null);
             }
 
-            ImageView ivThumb = (ImageView) findViewById(R.id.iv_coupon);
-
+            ivThumb = (ImageView) findViewById(R.id.iv_coupon);
+            ivThumb.setDrawingCacheEnabled(true);
             WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
             Display display = wm.getDefaultDisplay();
             DisplayMetrics metrics = new DisplayMetrics();
@@ -100,6 +109,15 @@ public class CouponDetailActivity extends BaseActivity implements WebServiceList
                     .build();
             ImageLoader.getInstance().displayImage(couponDetail.getThumb_url(), ivThumb,
                     options);
+
+           /* ImageLoader.getInstance().loadImage(couponDetail.getThumb_url(), options,
+                    new SimpleImageLoadingListener(){
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage){
+                            // Do whatever you want with Bitmap
+                            ivThumb.setImageBitmap(loadedImage);
+                        }
+                    });*/
         }
     }
 
@@ -149,11 +167,12 @@ public class CouponDetailActivity extends BaseActivity implements WebServiceList
                 finish();
                 break;
             case R.id.iv_right:
+                Uri bmpUri = getLocalBitmapUri(ivThumb);
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, couponDetail.getTitle()
-                +"\n"+couponDetail.getThumb_url());
-                sendIntent.setType("text/plain");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, couponDetail.getTitle());
+                sendIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                sendIntent.setType("image/*");
                 startActivity(Intent.createChooser(sendIntent, "Share"));
                 break;
         }
@@ -176,10 +195,52 @@ public class CouponDetailActivity extends BaseActivity implements WebServiceList
         }
     }
 
+    // Returns the URI path to the Bitmap displayed in specified ImageView
+    public Uri getLocalBitmapUri(ImageView imageView) {
+        // Extract Bitmap from ImageView drawable
+        Drawable drawable = imageView.getDrawable();
+        Bitmap bmp = imageView.getDrawingCache();
+        // Store image to default external storage directory
+        Uri bmpUri = null;
+        try {
+            File file =  new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOWNLOADS), "share_image.png");
+            file.getParentFile().mkdirs();
+            FileOutputStream out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.close();
+            bmpUri = Uri.fromFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bmpUri;
+    }
+
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+        Bitmap bitmap = null;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if(bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
 
     class CouponDetailPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 4;
-        private String tabTitles[] = new String[]{"Coupon", "Highlight", "Details", "Fine Print"};
+        private String tabTitles[] = new String[]{"Coupon", "Highlights", "Details", "Fine Print"};
         private Context context;
 
         public CouponDetailPagerAdapter(FragmentManager fm, Context context) {

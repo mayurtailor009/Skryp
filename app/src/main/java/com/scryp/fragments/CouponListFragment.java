@@ -70,15 +70,21 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
 
         init();
 
-        if(couponList.size()==0)
+        /*if(couponList.size()==0)
         getCouponList();
         else
-        setCouponList();
+        setCouponList();*/
+
+
 
         return view;
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        getCouponList();
+    }
 
     public void setCouponList(){
         setViewVisibility(R.id.progressBar, view, View.GONE);
@@ -258,7 +264,14 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
                     public void onClick(View view) {
                         Utils.hideKeyboard(getActivity());
                         int pos = (int) view.getTag();
-                        if(dto.getIs_coupon_downloaded_by_user()!=null &&
+                        UserDTO userDTO = Utils.getObjectFromPref(getActivity(), Constant.USER_INFO);
+                        if (userDTO != null) {
+                            Intent intent = new Intent(getActivity(), DownloadCouponActivity.class);
+                            intent.putExtra("couponId", localList.get(pos).getId());
+                            startActivity(intent);
+                        } else
+                            startActivity(new Intent(getActivity(), LoginActivity.class));
+                        /*if(dto.getIs_coupon_downloaded_by_user()!=null &&
                                 dto.getIs_coupon_downloaded_by_user().equals("y")){
                             Intent intent = new Intent(getActivity(), CouponDetailActivity.class);
                             Bundle bundle = new Bundle();
@@ -277,7 +290,7 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
                                 startActivity(intent);
                             } else
                                 startActivity(new Intent(getActivity(), LoginActivity.class));
-                        }
+                        }*/
                     }
                 });
 

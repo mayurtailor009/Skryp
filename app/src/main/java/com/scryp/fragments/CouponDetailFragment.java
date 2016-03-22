@@ -48,7 +48,7 @@ public class CouponDetailFragment extends BaseFragment {
             int download = Integer.parseInt(dto.getDownload());
             int max = Integer.parseInt(dto.getMax_purchases());
             int left = max-download;
-            setViewText(R.id.tv_left, download + "/" + left + " left", view);
+            setViewText(R.id.tv_left, left + "/" + max + " left", view);
         }
 
     }
