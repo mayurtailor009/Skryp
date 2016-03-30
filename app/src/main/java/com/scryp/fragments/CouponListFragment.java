@@ -251,7 +251,7 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
 
                 viewHolder.tvDistance.setText(Utils.get2DecimalValue(dto.getDist_min())+" Km");
                 viewHolder.ivDownload.setTag(i);
-
+                final ImageView ivDownload = viewHolder.ivDownload;
                 if(dto.getIs_coupon_downloaded_by_user()!=null &&
                         dto.getIs_coupon_downloaded_by_user().equals("y")){
                     viewHolder.ivDownload.setImageResource(R.drawable.view_btn);
@@ -266,11 +266,23 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
                         int pos = (int) view.getTag();
                         UserDTO userDTO = Utils.getObjectFromPref(getActivity(), Constant.USER_INFO);
                         if (userDTO != null) {
-                            Intent intent = new Intent(getActivity(), DownloadCouponActivity.class);
-                            intent.putExtra("couponId", localList.get(pos).getId());
-                            startActivity(intent);
+
+                            if(dto.getIs_coupon_downloaded_by_user()!=null &&
+                                    dto.getIs_coupon_downloaded_by_user().equals("y")){
+                                Intent intent = new Intent(getActivity(), DownloadCouponActivity.class);
+                                intent.putExtra("couponId", localList.get(pos).getId());
+                                startActivity(intent);
+                            }else{
+                                String url = "http://scryp.sg/ajaxHandeler.php?user_id="+userDTO.getID()+"&coupon_id="+dto.getId()+"&func=insertVoucherMobile";
+
+                                dto.setIs_coupon_downloaded_by_user("y");
+                                ivDownload.setImageResource(R.drawable.view_btn);
+                            }
+
                         } else
                             startActivity(new Intent(getActivity(), LoginActivity.class));
+
+
                         /*if(dto.getIs_coupon_downloaded_by_user()!=null &&
                                 dto.getIs_coupon_downloaded_by_user().equals("y")){
                             Intent intent = new Intent(getActivity(), CouponDetailActivity.class);

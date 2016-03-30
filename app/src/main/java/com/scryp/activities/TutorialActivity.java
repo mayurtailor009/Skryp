@@ -56,7 +56,7 @@ public class TutorialActivity extends BaseActivity {
             }
         });
         cbTutorial = (CheckBox) findViewById(R.id.cb_tutorial);
-
+        cbTutorial.setChecked(Utils.getBooleanFromPref(this, Constant.PREF_DONT_SHOW, false));
         ImageAdapter adapter = new ImageAdapter(this);
         mPager.setAdapter(adapter);
 
