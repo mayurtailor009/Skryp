@@ -153,6 +153,9 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
                     Utils.showDialog(getActivity(), "Message", Utils.getWebServiceMessage(result,Constant.GET_COUPON_METHOD));
                 }
             }
+            else if(requestCode == 2){
+
+            }
         }else{
             setViewVisibility(R.id.progressBar, view, View.GONE);
             swipeRefreshLayout.setRefreshing(false);
@@ -274,7 +277,9 @@ public class CouponListFragment extends BaseFragment implements WebServiceListen
                                 startActivity(intent);
                             }else{
                                 String url = "http://scryp.sg/ajaxHandeler.php?user_id="+userDTO.getID()+"&coupon_id="+dto.getId()+"&func=insertVoucherMobile";
-
+                                WebServiceCaller task = new WebServiceCaller(getActivity(), CouponListFragment.this, url,
+                                        null, 2, false);
+                                task.execute();
                                 dto.setIs_coupon_downloaded_by_user("y");
                                 ivDownload.setImageResource(R.drawable.view_btn);
                             }
