@@ -77,7 +77,7 @@ public class WebViewFragment extends BaseFragment implements OnMapReadyCallback 
             if(loc!=null) {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc,
-                        15));
+                        10));
             }
         }
     }
