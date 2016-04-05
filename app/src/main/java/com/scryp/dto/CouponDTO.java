@@ -39,6 +39,7 @@ public class CouponDTO implements Serializable{
     public String fine_print;
     public String expiration;
     public String is_coupon_downloaded_by_user;
+    private String url;
 
     public String getIs_coupon_downloaded_by_user() {
         return is_coupon_downloaded_by_user;
@@ -278,5 +279,13 @@ public class CouponDTO implements Serializable{
 
     public void setFine_print(String fine_print) {
         this.fine_print = fine_print;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

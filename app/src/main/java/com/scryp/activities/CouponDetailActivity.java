@@ -170,7 +170,7 @@ public class CouponDetailActivity extends BaseActivity implements WebServiceList
                 Uri bmpUri = getLocalBitmapUri(ivThumb);
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, couponDetail.getTitle());
+                sendIntent.putExtra(Intent.EXTRA_TEXT, couponDetail.getTitle()+"\n"+couponDetail.getUrl());
                 sendIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
                 sendIntent.setType("image/*");
                 startActivity(Intent.createChooser(sendIntent, "Share"));

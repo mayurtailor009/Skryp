@@ -69,11 +69,16 @@ public class WebViewFragment extends BaseFragment implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         if(couponDTO!=null && couponDTO.getArr_lat()!=null && couponDTO.getArr_lat().length>0) {
-            LatLng loc = new LatLng(Double.parseDouble(couponDTO.getArr_lat()[0]),Double.parseDouble(couponDTO.getArr_long()[0]));
-            googleMap.addMarker(new MarkerOptions().position(loc).title(couponDTO.getArr_loc()[0]));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc,
-                    15));
+            LatLng loc = null;
+            for(int i=0;i<couponDTO.getArr_lat().length;i++){
+                loc = new LatLng(Double.parseDouble(couponDTO.getArr_lat()[i]),Double.parseDouble(couponDTO.getArr_long()[i]));
+                googleMap.addMarker(new MarkerOptions().position(loc).title(couponDTO.getArr_loc()[i]));
+            }
+            if(loc!=null) {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc,
+                        15));
+            }
         }
     }
 }
