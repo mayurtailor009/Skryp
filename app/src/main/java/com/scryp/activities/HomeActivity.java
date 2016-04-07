@@ -126,7 +126,9 @@ public class HomeActivity extends BaseActivity implements  GoogleApiClient.Conne
             }
         });
 
-        setFooterClick();
+        //setFooterClick();
+        setClick(R.id.tv_coupons);
+        setClick(R.id.tv_profile);
         setTouchNClick(R.id.et_min_discount);
         setTouchNClick(R.id.et_max_discount);
         setTouchNClick(R.id.et_min_price);
